@@ -1,0 +1,45 @@
+import discord
+import random
+
+# La variable intents almacena los privilegios del bot
+intents = discord.Intents.default()
+# Activar el privilegio de lectura de mensajes
+intents.message_content = True
+# Crear un bot en la variable cliente y transferirle los privilegios
+client = discord.Client(intents=intents)
+
+@client.event
+async def on_ready():
+    print(f'Hemos iniciado sesión como {client.user}')
+
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+    if message.content.startswith('!hola'):
+        await message.channel.send("Holaa!")
+
+    elif message.content.startswith('!¿cuales son los problemas de la contaminacion?'):
+        await message.channel.send("Impacto en la salud humana: La contaminación del aire, el agua y el suelo puede causar una variedad de problemas de salud, como enfermedades respiratorias, cáncer, problemas cardiovasculares, enfermedades de la piel, entre otros.")
+        await message.channel.send("Cambio climático: Algunos tipos de contaminación, como las emisiones de gases de efecto invernadero, contribuyen al cambio climático, que tiene una serie de impactos negativos, como el aumento de las temperaturas globales, el derretimiento de los casquetes polares, el aumento del nivel del mar y eventos climáticos extremos más frecuentes y severos")        
+        await message.channel.send("Impacto en la calidad del aire: La contaminación del aire puede causar problemas respiratorios, como asma y enfermedad pulmonar obstructiva crónica (EPOC), así como irritación de los ojos, la nariz y la garganta. También puede afectar la visibilidad y causar daños a edificaciones y monumentos.")
+        await message.channel.send("Contaminación del suelo: La contaminación del suelo puede reducir la fertilidad del suelo y afectar la capacidad de producir alimentos. Además, puede contaminar las fuentes de agua subterránea, lo que afecta la disponibilidad de agua potable.")
+        await message.channel.send("Impacto económico: La contaminación puede tener costos económicos significativos, como gastos en atención médica, pérdida de productividad laboral, pérdida de ingresos para sectores afectados, y costos asociados con la limpieza y la restauración ambiental")                
+        await message.channel.send("Degradación del medio ambiente: La contaminación puede dañar los ecosistemas naturales, afectando la biodiversidad y causando la muerte de plantas y animales. Puede contaminar cuerpos de agua, causando la muerte de vida acuática y la degradación de los ecosistemas acuáticos")
+    
+    elif message.content.startswith('!¿como ayudar a el medio ambiente desde casa?'):
+        await message.channel.send("Reducir, reutilizar y reciclar: Prioriza la reducción de residuos, la reutilización de objetos y el reciclaje adecuado de materiales.")
+        await message.channel.send("Conservar energía: Apaga dispositivos electrónicos cuando no los uses, utiliza bombillas de bajo consumo energético y considera el uso de energía renovable si es posible.")
+        await message.channel.send("Conciencia sobre el consumo de agua: Arregla las fugas de agua, instala dispositivos de bajo flujo en grifos y duchas, y evita el desperdicio de agua siempre que sea posible.")
+        await message.channel.send("Transporte sostenible: Utiliza medios de transporte más sostenibles, como caminar, andar en bicicleta o usar el transporte público, en lugar de conducir solo en un automóvil.")
+        await message.channel.send("Apoyar productos sostenibles: Prefiere productos ecológicos y sostenibles, como alimentos orgánicos y productos de limpieza biodegradables.")
+
+    elif message.content.startswith('!adios'):
+        await message.channel.send("adios")
+
+    else:
+        await message.channel.send(message.content)
+
+
+
+client.run("PON TU TOKEN")
